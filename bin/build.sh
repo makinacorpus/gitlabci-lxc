@@ -4,13 +4,9 @@ LXCPATH=${LXCPATH:-/var/lib/lxc}
 LXCTEMPLATE=${LXCTEMPLATE:-makinastates}
 LXCNAME=${LXCTEMPLATE:-makinastates}
 copspath=/srv/corpusops/corpusops.bootstrap
-HERE=$(dirname $(dirname  $(readlink -f $0)))
+TOP=$(dirname $(dirname  $(readlink -f $0)))
 
-if [ ! -e $copspath ]; then
-    git clone https://github.com/corpusops/corpusops.bootstrap $copspath
-fi
-
-. $copspath/bin/cops_shell_common
+. $TOP/bin/shell_common
 
 post_tests_cleanup() {
     if [[ "${rc}" == "0" ]]; then
